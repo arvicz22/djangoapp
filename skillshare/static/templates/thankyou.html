@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block username %}
+{{ username }}
+{% endblock %}
+
+{% block content %}
+<div class='col-sm-12' style='text-align: center'>
+	<h1> Just one more step! Please complete the following:</h1>
+	<h1>Join Now</h1>
+		<form method='POST' action=''> {% csrf_token %}
+			{{ form.as_p}}
+			<input type='submit' class='btn btn-success' value="Complete Pre-Order">
+		</form>
+
+</div>
+{% endblock %}

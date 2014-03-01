@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block jumbotron %}
+<div class="jumbotron">
+  <div class="container">
+    <h1>Hello, world!</h1>
+    <p>This is my first project using Django. My goal with this project is to be able to have users create an account, login, and create/view events.</p>
+    <p><a class="btn btn-primary btn-lg" role="button" href='{% url "createaccount" %}'>Sign up &raquo;</a></p>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+
+{% endblock %}

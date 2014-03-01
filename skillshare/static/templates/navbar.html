@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href='{% url "home" %}'>Millennium Cleaners</a>
+        </div>
+        <div class="navbar-collapse collapse">
+        
+        
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href='{% url "aboutus" %}'>About</a></li>
+        <li><a href='{% url "services" %}'>Services</a></li>
+        <li><a href='{% url "testimonials" %}'>Testimonials</a></li>
+        <li><a href='{% url "aboutus" %}'>Contact</a></li>
+        <!-- <li {% if message.tags == "" %}><a href='{% url "signin" %}' >Sign in</a ></li {% endif %}> -->
+        <!-- <li>{{ username }}</li> -->
+        <!-- <li {% if message.tags != "" %}><a href='{% url "logout" %}' >(logout)</a ></li {% endif %}> -->
+      </ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>

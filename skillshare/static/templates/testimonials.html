@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='col-sm-12' style='text-align: center'>
+  <h1>Add a testimonial:</h1>
+  <form method='POST' action=''> {% csrf_token %}
+    {{ form.as_p}}
+    <input type='submit' class='btn btn-primary btn-lg' role="button" value="Submit testimonial">
+  </form>
+</div>
+<tr>
+  <td>Entries:</td>
+  <td>{{ output }}</td>
+</tr>
+{% endblock %}
