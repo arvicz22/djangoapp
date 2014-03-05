@@ -15,20 +15,8 @@ from .forms import SignUpForm
 from django import forms
 from django.forms import ModelForm
 from .models import *
+from .forms import *
 
-class LoginForm(forms.Form):
-	username = forms.CharField(label='Username', max_length=120)
-	password = forms.CharField(label='Password', max_length=120, widget=forms.PasswordInput)
-	
-class TestimonialForm(ModelForm):
-	class Meta:
-		model = Testimonial
-		fields = ['first_name', 'last_name', 'city', 'state', 'message']
-	# first_name = forms.CharField(label='First name', max_length=120)
-	# last_name = forms.CharField(label='Last name', max_length=120)
-	# city = forms.CharField(label='City', max_length=120)
-	# state = forms.CharField(label='State', max_length=120)
-	# message = forms.CharField(label='Message', max_length=300)
 
 
 def vwap(some_view):
@@ -68,19 +56,24 @@ def thankyou(request, username):
 								context_instance=RequestContext(request))
 @vwap	
 def testimonials(request, username):
+	
 	form = TestimonialForm(request.POST or None)
+	if request.method == 'POST':
+		if form.is_valid():
+			save_it = form.save()
+			save_it.save()
+			messages.success(request, "Thanks for your feedback!")
+		else:
+			messages.success(request, "Form is invalid!")
+			
+	# grab all of the objects
+	objs = Testimonial.objects.all();
 	
-	if form.is_valid():
-		save_it = form.save()
-		save_it.save()
-		message = request.POST.get('first_name')
-		messages.success(request, 'Thank you for the feedback.')
-	else:
-		messages.success(request, 'Please fill out every field.')
-	
-	# html inject this stuff into a table if approved
-	output = Testimonial.objects.all();
-	
+	# add each approved testimonial
+	output = '<ul class="list-group">'
+	for obj in objs:
+		if obj.approved:
+			output += '<li class="list-group-item"><h4>' + obj.first_name + ' ' + obj.last_name + ' - ' + obj.city + ', ' + obj.state + '</h4>' + obj.message + '</li>'
 	
 	return render_to_response("testimonials.html",
 								locals(),

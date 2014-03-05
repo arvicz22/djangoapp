@@ -2,7 +2,8 @@
 	"folders":
 	[
 		{
-			"path": "/home/eric/Desktop/skillshare"
+			"follow_symlinks": true,
+			"path": "."
 		}
 	]
 }

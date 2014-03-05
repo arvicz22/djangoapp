@@ -14,21 +14,16 @@ class SignUp(models.Model):
 		return smart_unicode(self.first_name)
 
 class Testimonial(models.Model):
+	
 	class Meta:
 		app_label = "signups"
 	
-	def is_valid():
-		if all(x is not None for x in [first_name, last_name, city, state, message]):
-			return True
-		return False	
-	
-	first_name = models.CharField(max_length=120, null=True, blank=True)
-	last_name = models.CharField(max_length=120, null=True, blank=True)
-	city = models.CharField(max_length=120, null=True, blank=True)
-	state = models.CharField(max_length=120, null=True, blank=True)
-	message = models.CharField(max_length=300, null=True, blank=True)
+	first_name = models.CharField(max_length=120, null=True)
+	last_name = models.CharField(max_length=120, null=True)
+	city = models.CharField(max_length=120, null=True)
+	state = models.CharField(max_length=120, null=True)
+	message = models.CharField(max_length=300, null=True)
 	approved = models.BooleanField(default=False, verbose_name="Approved by admin.")
-	# timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
 	
 	def __unicode__(self):
 		return smart_unicode(self.message)

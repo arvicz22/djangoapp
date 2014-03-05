@@ -1,15 +1,50 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class='col-sm-12' style='text-align: center'>
+<p></p>
+<div class="container">
+	  <!-- Example row of columns -->
+	  <div class="row">
+	    <div class="col-md-12">
+	    <h2>What our customers have to say...</h2>
+		{% autoescape off %}{{ output }}{% endautoescape %}
+		</div>
+	  </div>
+</div>
+
+<form action="" class="form-horizontal" method="POST"> {% csrf_token %}
+	<!-- Each field -->
+	{% for field in form %}
+		<div class="form-group">
+			<label for={{ field.id_for_label }} class="col-sm-2 control-label">{{ field.label }}</label>
+			<div class="col-md-4">
+				<!-- {{ field }} -->
+				<input type="text" class="form-control" name='{{ field.html_name }}' id='{{ field.id_for_label }}' placeholder='{{ field.label }}'>
+			</div>
+			<!-- <div class="col-md-4">{{ field.errors }}</div> -->
+		</div>
+      
+        
+    {% endfor %}
+    
+    <!-- Submit button -->
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" class="btn btn-primary btn-lg" role="button" value="Submit testimonial">
+        </div>
+      </div>
+</form>
+
+
+
+
+
+<!-- <div class='col-sm-12' style='text-align: center'>
   <h1>Add a testimonial:</h1>
   <form method='POST' action=''> {% csrf_token %}
     {{ form.as_p}}
     <input type='submit' class='btn btn-primary btn-lg' role="button" value="Submit testimonial">
   </form>
-</div>
-<tr>
-  <td>Entries:</td>
-  <td>{{ output }}</td>
-</tr>
+</div> -->
+
 {% endblock %}
